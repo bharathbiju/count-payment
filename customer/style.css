@@ -10,6 +10,11 @@ body{
   padding:1em;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .container{
   max-width:1170px;
   margin-left:auto;
