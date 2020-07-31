@@ -2,13 +2,13 @@ const wait=ms=>new Promise(resolve => setTimeout(resolve, ms))
 
 var firebaseConfig = {
   apiKey: "AIzaSyBnWGQfM677TswYMBUDMCVSC1CtuswL5Fo",
-  authDomain: "login-95de5.firebaseapp.com",
-  databaseURL: "https://login-95de5.firebaseio.com",
-  projectId: "login-95de5",
-  storageBucket: "login-95de5.appspot.com",
-  messagingSenderId: "277584537988",
-  appId: "1:277584537988:web:5daaebaa41f589624215d1",
-  measurementId: "G-R7EXMV3NJG"
+    authDomain: "login-95de5.firebaseapp.com",
+    databaseURL: "https://login-95de5.firebaseio.com",
+    projectId: "login-95de5",
+    storageBucket: "login-95de5.appspot.com",
+    messagingSenderId: "277584537988",
+    appId: "1:277584537988:web:5daaebaa41f589624215d1",
+    measurementId: "G-R7EXMV3NJG"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
