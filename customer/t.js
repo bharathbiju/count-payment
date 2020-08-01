@@ -28,6 +28,8 @@ var firebaseConfig = {
 
     if(email_box.value.length != 0 && number_box.value.length != 0)    {
       document.getElementById("input_button").disabled = true;
+      // var dt = new Date()
+      // var date=dt.toLocaleString()
  
   var key = firebase.database().ref().child("cust").push().key;
       var task = {
@@ -36,13 +38,14 @@ var firebaseConfig = {
         email: email_box.value,
         city_box: city_box.value,
         state_box: state_box.value,
-        key: key
+        key: key,
+        // date:date
       };
 
       var updates = {};
       updates["/cust/" + key] = task;
       firebase.database().ref().update(updates);
-      wait(1.2*1000).then(() => {
+      wait(2*1000).then(() => {
         document.getElementById("input_button").disabled = false;
         window.location="second.html"
     })
