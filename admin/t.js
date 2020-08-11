@@ -41,7 +41,7 @@ firebase.initializeApp(firebaseConfig);
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "https://api.razorpay.com/v1/orders",
+    "url": "https://cors-anywhere.herokuapp.com/https://api.razorpay.com/v1/orders",
     "method": "GET",
     "headers": {
       "authorization": "Basic cnpwX3Rlc3Rfczc3aFVZdTc1UXB5RlI6SUZpZTRHVXRQUVhKYkIxbmFJdG8zeWZZ",
