@@ -55,8 +55,20 @@ firebase.initializeApp(firebaseConfig);
   }
   
   $.ajax(settings).done(function (response) {
-    console.log(response);
+    console.log(response.items[0])
+    var cars = new Array();
+    var  finalstrings="";
+    for(i=0;i<response.items.length;i++)
+    {
+      // console.log(response.items[i].id)
+      
+      finalstrings+=" <tr><td>"+response.items[i].id+"</td><td>"+response.items[i].notes.email+"</td><td>"+response.items[i].notes.phone+"</td><td></tr>"
+     
+    }
+    document.getElementById("razerTableContent").innerHTML = finalstrings;
+ 
   });
+
   
   
   }
