@@ -1,43 +1,21 @@
 var firebaseConfig = {
-    apiKey: "AIzaSyBnWGQfM677TswYMBUDMCVSC1CtuswL5Fo",
-    authDomain: "login-95de5.firebaseapp.com",
-    databaseURL: "https://login-95de5.firebaseio.com",
-    projectId: "login-95de5",
-    storageBucket: "login-95de5.appspot.com",
-    messagingSenderId: "277584537988",
-    appId: "1:277584537988:web:5daaebaa41f589624215d1",
-    measurementId: "G-R7EXMV3NJG"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  apiKey: "AIzaSyBnWGQfM677TswYMBUDMCVSC1CtuswL5Fo",
+  authDomain: "login-95de5.firebaseapp.com",
+  databaseURL: "https://login-95de5.firebaseio.com",
+  projectId: "login-95de5",
+  storageBucket: "login-95de5.appspot.com",
+  messagingSenderId: "277584537988",
+  appId: "1:277584537988:web:5daaebaa41f589624215d1",
+  measurementId: "G-R7EXMV3NJG"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
+  function firebaseret(){
 
-
-  // function add_task(){
-  //   input_box = document.getElementById("input_box");
-  //   input_date = document.getElementById("input_date");
-
-  //   if(input_box.value.length != 0 && input_date.value.length != 0){
-  //     // our boxes have data and we take database
-  //     var key = firebase.database().ref().child("unfinished_task").push().key;
-  //     var task = {
-  //       title: input_box.value,
-  //       date: input_date.value,
-  //       key: key
-  //     };
-
-  //     var updates = {};
-  //     updates["/unfinished_task/" + key] = task;
-  //     firebase.database().ref().update(updates);
-  //     create_unfinished_task();
-  //   }
-  // }
-
-  function create_unfinished_task(){
-    unfinished_task_container = document.getElementsByClassName("container")[0];
-    unfinished_task_container.innerHTML = "";
-
-    task_array = [];
+    var  finalstring="";
+    
+      task_array = [];
     firebase.database().ref("cust").once('value', function(snapshot) {
       snapshot.forEach(function(childSnapshot) {
         var childKey = childSnapshot.key;
@@ -45,217 +23,41 @@ var firebaseConfig = {
         task_array.push(Object.values(childData));
         
       });
-
-      console.log(task_array)
       for(var i, i = 0; i < task_array.length; i++){
-        city_box = task_array[i][0];
-        task_key = task_array[i][2];
-        name_box = task_array[i][3];
-        email_box= task_array[i][1];
-        number_box= task_array[i][4];
-        state_box= task_array[i][5];
+        District = task_array[i][0];
+       Phonenumber = task_array[i][1];
+        email = task_array[i][2];
+        name= task_array[i][3];
+        state= task_array[i][4];
 
-        task_container = document.createElement("div");
-        task_container.setAttribute("class", "task_container");
-        task_container.setAttribute("data-key", task_key);
-
-        // TASK DATA
-        task_data = document.createElement('div');
-        task_data.setAttribute('id', 'task_data');
-
-        title = document.createElement('p');
-        title.setAttribute('id', 'name_box');
-        title.setAttribute('contenteditable', false);
-        title.innerHTML = name_box;
-
-        email = document.createElement('p');
-        email.setAttribute('id', 'email_box');
-        email.setAttribute('contenteditable', false);
-        email.innerHTML = email_box;
-
-        date = document.createElement('p');
-        date.setAttribute('id', 'number_box');
-        date.setAttribute('contenteditable', false);
-        date.innerHTML = number_box;
-
-        // TASK TOOLS
-        // task_tool = document.createElement('div');
-        // task_tool.setAttribute('id', 'task_tool');
-
-        // task_done_button = document.createElement('button');
-        // task_done_button.setAttribute('id', 'task_done_button');
-        // task_done_button.setAttribute('onclick', "task_done(this.parentElement.parentElement, this.parentElement)");
-        // fa_done = document.createElement('i');
-        // fa_done.setAttribute('class', 'fa fa-check');
-
-        // task_edit_button = document.createElement('button');
-        // task_edit_button.setAttribute('id', 'task_edit_button');
-        // task_edit_button.setAttribute('onclick', "task_edit(this.parentElement.parentElement, this)");
-        // fa_edit = document.createElement('i');
-        // fa_edit.setAttribute('class', 'fa fa-pencil');
-
-        // task_delete_button = document.createElement('button');
-        // task_delete_button.setAttribute('id', 'task_delete_button');
-        // task_delete_button.setAttribute('onclick', "task_delete(this.parentElement.parentElement)");
-        // fa_delete = document.createElement('i');
-        // fa_delete.setAttribute('class', 'fa fa-trash');
-
-
-        unfinished_task_container.append(task_container);
-        task_container.append(task_data);
-
-        task_data.append(date);
-        task_data.append(email);
-
-
-      //   task_container.append(task_tool);
-      //   task_tool.append(task_done_button);
-      //   task_done_button.append(fa_done);
-      //   task_tool.append(task_edit_button);
-      //   task_edit_button.append(fa_edit);
-      //   task_tool.append(task_delete_button);
-      //   task_delete_button.append(fa_delete);
+        finalstring+=" <tr><td>"+name+"</td><td>"+state+"</td><td>"+email+"</td><td>"+Phonenumber+"</td><td>"+District+"</td></tr>";
       }
 
-    });
+      
+      document.getElementById("TableContent").innerHTML = finalstring;
+      
+  })
 
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://api.razorpay.com/v1/orders",
+    "method": "GET",
+    "headers": {
+      "authorization": "Basic cnpwX3Rlc3Rfczc3aFVZdTc1UXB5RlI6SUZpZTRHVXRQUVhKYkIxbmFJdG8zeWZZ",
+      "access-control-allow-origin": "*",
+      "cache-control": "no-cache",
+      "postman-token": "935f7114-f7c7-cf6e-58fb-e6aeedbf4076",
+      'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*' 
+    }
   }
-  // function create_finished_task(){
-
-  //   finished_task_container = document.getElementsByClassName("container")[1];
-  //   finished_task_container.innerHTML = "";
-
-  //   finished_task_array = [];
-  //   firebase.database().ref("cust").once('value', function(snapshot) {
-  //     snapshot.forEach(function(childSnapshot) {
-  //       var childKey = childSnapshot.key;
-  //       var childData = childSnapshot.val();
-  //       finished_task_array.push(Object.values(childData));
-  //     });
-  //     for(var i, i = 0; i < finished_task_array.length; i++){
-  //       city_box = finished_task_array[i][0];
-  //       task_key = finished_task_array[i][1];
-  //       name_box = finished_task_array[i][2];
-
-  //       task_container = document.createElement("div");
-  //       task_container.setAttribute("class", "task_container");
-  //       task_container.setAttribute("data-key", task_key);
-
-  //       // TASK DATA
-  //       task_data = document.createElement('div');
-  //       task_data.setAttribute('id', 'task_data');
-
-  //       title = document.createElement('p');
-  //       title.setAttribute('id', 'name_box');
-  //       title.setAttribute('contenteditable', false);
-  //       title.innerHTML = name_box;
-
-  //       date = document.createElement('p');
-  //       date.setAttribute('id', 'city_box');
-  //       date.setAttribute('contenteditable', false);
-  //       date.innerHTML = city_box;
-
-  //       // TASK TOOLS
-  //       task_tool = document.createElement('div');
-  //       task_tool.setAttribute('id', 'task_tool');
-
-  //       task_delete_button = document.createElement('button');
-  //       task_delete_button.setAttribute('id', 'task_delete_button');
-  //       task_delete_button.setAttribute('onclick', "task_finished_delete(this.parentElement.parentElement)");
-  //       fa_delete = document.createElement('i');
-  //       fa_delete.setAttribute('class', 'fa fa-trash');
-
-  //       finished_task_container.append(task_container);
-  //       task_container.append(task_data);
-  //       task_data.append(title);
-  //       task_data.append(date);
-
-  //       task_container.append(task_tool);
-  //       task_tool.append(task_delete_button);
-  //       task_delete_button.append(fa_delete);
-  //     }
-
-  //   });
-
-  // }
-
-  // function task_done(task, task_tool){
-  //   finished_task_container = document.getElementsByClassName("container")[1];
-  //   task.removeChild(task_tool);
-  //   finished_task_container.append(task);
-
-  //   var key = task.getAttribute("data-key");
-  //   var task_obj = {
-  //     title: task.childNodes[0].childNodes[0].innerHTML,
-  //     date: task.childNodes[0].childNodes[1].innerHTML,
-  //     key: key
-  //   };
-
-  //   var updates = {};
-  //   updates["/finished_task/" + key] = task_obj;
-  //   firebase.database().ref().update(updates);
-
-  //   // delete our task from unfinished
-  //   task_delete(task);
-  //   create_finished_task();
-  // }
-
-  // function task_edit(task, edit_button){
-  //   edit_button.setAttribute("id", "task_edit_button_editing");
-  //   edit_button.setAttribute("onclick", "finish_edit(this.parentElement.parentElement, this)");
-
-  //   title = task.childNodes[0].childNodes[0];
-  //   title.setAttribute("contenteditable", true);
-  //   title.setAttribute("id", "title_editing");
-  //   title.focus();
-
-  //   date = task.childNodes[0].childNodes[1];
-  //   date.setAttribute("contenteditable", true);
-  //   date.setAttribute("id", "date_editing");
-
-  // }
-  // function finish_edit(task, edit_button){
-  //   edit_button.setAttribute("id", "task_edit_button");
-  //   edit_button.setAttribute("onclick", "task_edit(this.parentElement.parentElement, this)");
-
-  //   title = task.childNodes[0].childNodes[0];
-  //   title.setAttribute("contenteditable", false);
-  //   title.setAttribute("id", "name_box");
-
-  //   date = task.childNodes[0].childNodes[1];
-  //   date.setAttribute("contenteditable", false);
-  //   date.setAttribute("id", "number_box");
-
-  //   // change in firebase to
-  //   var key = task.getAttribute("data-key");
-  //   var task_obj = {
-  //     title: task.childNodes[0].childNodes[0].innerHTML,
-  //     date: task.childNodes[0].childNodes[1].innerHTML,
-  //     key: key
-  //   };
-
-  //   var updates = {};
-  //   updates["/unfinished_task/" + key] = task_obj;
-  //   firebase.database().ref().update(updates);
-
-  // }
-
-  // function task_delete(task){
-  //   key = task.getAttribute("data-key");
-  //   task_to_remove = firebase.database().ref("unfinished_task/" + key);
-  //   task_to_remove.remove();
-
-  //   // remove from html view or whatevesss
-  //   task.remove();
-
-  // }
-
-  // function task_finished_delete(task){
-  //   key = task.getAttribute("data-key");
-  //   task_to_remove = firebase.database().ref("finished_task/" + key);
-  //   task_to_remove.remove();
-
-  //   // remove from html view or whatevesss
-  //   task.remove();
-
-  // }
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });
+  
+  
+  }
+ 
